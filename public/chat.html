@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script  defer src="client1.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+    <h2 id="welcome-message"></h2>
+    <h3 id="username"></h3>
+    <h4 id="room"></h4>
+    <h5 id="phone"></h5>
+</div>
+    <div class="messages">
+      
+    </div>
+    
+    <form action="#" class="form">
+        <input type="text" placeholder="Enter a message" required id="inpmessages">
+        <br><br>
+        <button  class="chat-submit" type="submit">Send</button>
+    </form>
+  
+
+    <script>
+        // Function to extract query parameters from the URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                username: params.get('username'),
+                roomname: params.get('roomname'),
+                phone:params.get("phone")
+            };
+        }
+
+        // Display the user's info on the chat page
+        const { username, roomname ,phone} = getQueryParams();
+        const welcomeMessage = document.querySelector("#welcome-message");
+        const usernameElement = document.querySelector("#username");
+       document.querySelector("#room").textContent=roomname
+       document.querySelector("#phone").textContent=phone
+
+        welcomeMessage.textContent = `Welcome, ${username}! You have joined the room: ${roomname}`;
+        usernameElement.textContent = `Username: ${username}`;
+      
+    </script>
+
+<button id="connection">Connected User</button>
+</body>
+</html>
